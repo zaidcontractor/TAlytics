@@ -1,0 +1,44 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Data directory contents (keep structure)
+data/rubrics/*
+data/submissions/*
+data/exports/*
+!data/rubrics/.gitkeep
+!data/submissions/.gitkeep
+!data/exports/.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Go workspace
+go.work
+go.work.sum
