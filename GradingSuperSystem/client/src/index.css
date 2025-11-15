@@ -1,0 +1,32 @@
+:root {
+  --primary-color: #2C5282;
+  --primary-hover: #1A365D;
+  --secondary-color: #4A5568;
+  --accent-color: #3182CE;
+  --success-color: #38A169;
+  --warning-color: #D69E2E;
+  --danger-color: #E53E3E;
+  --background: #F7FAFC;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --text-muted: #718096;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+code {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  background: #EDF2F7;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}

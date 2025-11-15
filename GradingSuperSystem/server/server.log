@@ -1,0 +1,26 @@
+nohup: ignoring input
+2025/11/15 17:50:17 Looking for .env at: /home/philip/TAlytics/GradingSuperSystem/server/.env
+2025/11/15 17:50:17 ✓ Claude API key loaded successfully (length: 108)
+2025/11/15 17:50:17 Database initialized successfully
+2025/11/15 17:50:17 HTTP REST API server listening on :5000
+2025/11/15 17:50:17 TAlytics Go server with authentication and course management is ready!
+2025/11/15 17:50:17 gRPC server listening on :50051
+2025/11/15 17:50:49 HTTP GET /api/submissions/assignment/2 from [::1]:56302
+2025/11/15 17:50:49 HTTP GET /api/submissions/assignment/2 from [::1]:56302
+2025/11/15 17:50:49 HTTP GET /api/grades/submission/5 from [::1]:56302
+2025/11/15 17:50:49 HTTP GET /api/submissions/5/file from [::1]:56294
+2025/11/15 17:50:49 HTTP GET /api/submissions/5/file from [::1]:56294
+2025/11/15 17:50:49 HTTP GET /api/grades/submission/5 from [::1]:56302
+2025/11/15 17:50:49 HTTP GET /api/grades/5/comments from [::1]:56294
+2025/11/15 17:50:59 HTTP POST /api/grades from [::1]:56294
+2025/11/15 17:50:59 Grade endpoint hit: method=POST
+2025/11/15 17:50:59 Grade updated: id=5, submission=5, score=89.50
+2025/11/15 17:51:00 HTTP GET /api/submissions/14/file from [::1]:56302
+2025/11/15 17:51:00 HTTP GET /api/grades/submission/14 from [::1]:56294
+2025/11/15 17:51:00 HTTP GET /api/grades/6/comments from [::1]:56302
+2025/11/15 17:51:02 HTTP GET /api/courses/my-courses from [::1]:56294
+2025/11/15 17:51:02 HTTP GET /api/courses/my-courses from [::1]:56294
+2025/11/15 17:51:03 HTTP GET /api/courses/3/assignments from [::1]:56294
+2025/11/15 17:51:03 HTTP GET /api/courses/3/assignments from [::1]:56294
+2025/11/15 17:51:03 HTTP GET /api/grades/needs-regrading from [::1]:56294
+2025/11/15 17:51:03 HTTP GET /api/grades/needs-regrading from [::1]:56294

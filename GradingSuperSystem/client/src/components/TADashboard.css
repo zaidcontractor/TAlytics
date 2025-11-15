@@ -1,0 +1,715 @@
+.ta-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--primary-hover);
+}
+
+.course-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.course-title h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.ta-badge {
+  background: var(--success-color);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button.highlight {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    background: rgba(214, 158, 46, 0.05);
+  }
+  50% {
+    background: rgba(214, 158, 46, 0.12);
+  }
+}
+
+.tab-button:hover {
+  color: var(--text-primary);
+  background: var(--background);
+}
+
+.tab-button.active {
+  color: var(--success-color);
+  border-bottom-color: var(--success-color);
+  background: var(--background);
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+.tab-count {
+  background: var(--success-color);
+  color: white;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.1875rem 0.4375rem;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.tab-count.alert {
+  background: var(--danger-color);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.dashboard-content {
+  min-height: 400px;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #E2E8F0;
+  border-top: 4px solid var(--success-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner p {
+  color: var(--text-secondary);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* TA Overview */
+.ta-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.stat-card.pending-stat {
+  border-left: 3px solid var(--warning-color);
+}
+
+.stat-card.completed-stat {
+  border-left: 3px solid var(--success-color);
+}
+
+.stat-card.assignments-stat {
+  border-left: 3px solid var(--accent-color);
+}
+
+.stat-icon {
+  font-size: 1.75rem;
+  opacity: 0.7;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.course-info,
+.quick-actions {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.course-info h3,
+.quick-actions h3 {
+  margin: 0 0 1.25rem 0;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.course-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.course-code {
+  font-family: monospace;
+  background: #F0FFF4;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--success-color);
+}
+
+.role-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-badge.ta {
+  background: #F0FFF4;
+  color: var(--success-color);
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.875rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.action-btn:hover {
+  border-color: var(--success-color);
+  background: #F0FFF4;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.action-icon {
+  font-size: 1.75rem;
+  opacity: 0.7;
+}
+
+.action-text {
+  flex: 1;
+}
+
+.action-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  margin-bottom: 0.125rem;
+}
+
+.action-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* Tab Headers */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.tab-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.grade-count {
+  background: #F0FFF4;
+  color: var(--success-color);
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Grades Lists */
+.grades-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.grade-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.grade-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.grade-card.pending {
+  border-left: 3px solid var(--warning-color);
+}
+
+.grade-card.completed {
+  border-left: 3px solid var(--success-color);
+}
+
+.grade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.875rem;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.student-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--success-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.student-avatar.completed {
+  background: var(--primary-color);
+}
+
+.student-details {
+  flex: 1;
+}
+
+.student-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.0625rem;
+  margin-bottom: 0.125rem;
+}
+
+.assignment-name {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-high {
+  background: #FFF5F5;
+  color: var(--danger-color);
+}
+
+.priority-medium {
+  background: #FFFBEB;
+  color: var(--warning-color);
+}
+
+.priority-low {
+  background: #F7FAFC;
+  color: var(--text-secondary);
+}
+
+.score-badge {
+  background: #F0FFF4;
+  color: var(--success-color);
+  padding: 0.4375rem 0.875rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.grade-details {
+  margin-bottom: 0.875rem;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.submission-info,
+.completion-info {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.grade-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Common Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: var(--success-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2F855A;
+  box-shadow: 0 2px 6px rgba(56, 161, 105, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--success-color);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--background);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: #E2E8F0;
+  color: var(--text-primary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.875rem;
+  opacity: 0.5;
+}
+
+.empty-state h4 {
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .course-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .dashboard-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    padding: 0.75rem 1rem;
+  }
+  
+  .overview-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .grade-actions {
+    flex-direction: column;
+  }
+  
+  .student-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .grade-header {
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+}
+
+/* Regrading Alert Banner */
+.regrading-alert {
+  background: linear-gradient(135deg, #FFFBEB, #FED7D7);
+  border: 2px solid var(--warning-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(214, 158, 46, 0.15);
+}
+
+.regrading-alert .alert-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.regrading-alert .alert-content {
+  flex: 1;
+}
+
+.regrading-alert h4 {
+  margin: 0 0 0.375rem 0;
+  color: #744210;
+  font-size: 1.0625rem;
+}
+
+.regrading-alert p {
+  margin: 0 0 0.875rem 0;
+  color: #744210;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+/* Regrading Stats Card */
+.stat-card.regrading-stat {
+  background: #FFFBEB;
+  border: 2px solid var(--warning-color);
+}
+
+.stat-card.regrading-stat .stat-icon {
+  color: var(--warning-color);
+}
+
+.stat-card.regrading-stat .stat-number {
+  color: #744210;
+}
+
+/* Regrading Info Banner */
+.regrading-info-banner {
+  background: #FFFBEB;
+  border: 1px solid #FBD38D;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  gap: 0.875rem;
+}
+
+.regrading-info-banner .info-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.regrading-info-banner .info-text h4 {
+  margin: 0 0 0.375rem 0;
+  color: #744210;
+  font-size: 0.9375rem;
+}
+
+.regrading-info-banner .info-text p {
+  margin: 0;
+  color: #744210;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Regrading Grade Card */
+.grade-card.regrading {
+  border: 2px solid var(--warning-color);
+  background: linear-gradient(135deg, #FFFBEB, var(--surface));
+}
+
+.grade-card.regrading .student-avatar {
+  background: var(--warning-color);
+}
+
+.grade-card.regrading .priority-badge {
+  background: var(--warning-color);
+  color: white;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(214, 158, 46, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(214, 158, 46, 0);
+  }
+}
+
+.previous-grade, .rubric-updated {
+  display: flex;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+}

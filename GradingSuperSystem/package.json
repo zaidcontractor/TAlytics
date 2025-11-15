@@ -1,0 +1,23 @@
+{
+  "name": "talytics",
+  "version": "1.0.0",
+  "description": "AI-powered grading standardization system for educational operations",
+  "main": "server/cmd/main.go",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && go run ./cmd",
+    "server:build": "cd server && go build -o talytics-server ./cmd",
+    "server:start": "cd server && ./talytics-server",
+    "client": "cd client && npm start",
+    "build": "npm run server:build && cd client && npm run build",
+    "install-all": "npm install && cd client && npm install",
+    "test": "cd client && npm test",
+    "start": "concurrently \"npm run server:start\" \"npm run client\""
+  },
+  "keywords": ["education", "grading", "ai", "statistics", "operations", "golang", "grpc"],
+  "author": "TAlytics Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

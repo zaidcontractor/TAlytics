@@ -1,0 +1,344 @@
+.rubric-ai-editor {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.editor-header {
+  margin-bottom: 24px;
+}
+
+.editor-header h3 {
+  font-size: 24px;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.editor-description {
+  color: #718096;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.current-rubric-preview {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.current-rubric-preview h4 {
+  font-size: 16px;
+  color: #2d3748;
+  margin: 0 0 16px 0;
+}
+
+.rubric-criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rubric-criterion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+}
+
+.criterion-index {
+  color: #718096;
+  font-weight: 600;
+  min-width: 24px;
+}
+
+.criterion-name {
+  flex: 1;
+  color: #2d3748;
+}
+
+.criterion-weight {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.spinner-small {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Comparison Mode Styles */
+.comparison-mode {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.selection-summary {
+  background: #edf2f7;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label {
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.stat-value.valid {
+  color: #48bb78;
+}
+
+.stat-value.invalid {
+  color: #f56565;
+}
+
+.weight-warning {
+  margin-top: 12px;
+  padding: 12px;
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-radius: 6px;
+  color: #c53030;
+  font-size: 14px;
+}
+
+.comparison-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.criterion-comparison {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.criterion-comparison:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.criterion-comparison.selected {
+  border-color: #667eea;
+  background: #f7faff;
+}
+
+.criterion-comparison.unselected {
+  opacity: 0.6;
+  background: #f7fafc;
+}
+
+.criterion-comparison.modified {
+  border-left: 4px solid #667eea;
+}
+
+.selection-checkbox {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.selection-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.comparison-content {
+  flex: 1;
+}
+
+.criterion-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.criterion-index {
+  background: #667eea;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.criterion-change-badge .badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-new {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-modified {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.badge-unchanged {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.comparison-details {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.comparison-side {
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.comparison-side.original {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.comparison-side.suggested {
+  background: #f0fff4;
+  border: 1px solid #9ae6b4;
+}
+
+.side-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+.comparison-side .criterion-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.comparison-side .criterion-weight {
+  font-size: 14px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.suggested-text {
+  color: #22543d !important;
+}
+
+.no-original {
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.comparison-arrow {
+  font-size: 24px;
+  color: #cbd5e0;
+  font-weight: 300;
+}
+
+.change-reason {
+  background: #fffaf0;
+  border: 1px solid #fbd38d;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.reason-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #744210;
+  margin-bottom: 6px;
+}
+
+.reason-text {
+  font-size: 14px;
+  color: #744210;
+  line-height: 1.5;
+}
+
+.editor-actions.sticky {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 20px 0;
+  border-top: 2px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.action-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #718096;
+  font-size: 14px;
+}
+
+.info-icon {
+  font-size: 18px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}

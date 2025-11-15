@@ -1,0 +1,475 @@
+syntax = "proto3";
+
+package talytics;
+option go_package = "github.com/talytics/server/proto";
+
+import "google/protobuf/timestamp.proto";
+
+// User/Authentication service definition
+service UserService {
+  rpc Register(RegisterRequest) returns (AuthResponse);
+  rpc Login(LoginRequest) returns (AuthResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+  rpc GetProfile(GetProfileRequest) returns (UserResponse);
+  rpc VerifyToken(VerifyTokenRequest) returns (UserResponse);
+}
+
+// Course service definition
+service CourseService {
+  rpc CreateCourse(CreateCourseRequest) returns (CourseResponse);
+  rpc GetCourse(GetCourseRequest) returns (CourseResponse);
+  rpc ListCourses(ListCoursesRequest) returns (ListCoursesResponse);
+  rpc UpdateCourse(UpdateCourseRequest) returns (CourseResponse);
+  rpc JoinCourse(JoinCourseRequest) returns (CourseResponse);
+  rpc LeaveCourse(LeaveCourseRequest) returns (LeaveCourseResponse);
+  rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
+}
+
+// Assignment service definition
+service AssignmentService {
+  rpc CreateAssignment(CreateAssignmentRequest) returns (AssignmentResponse);
+  rpc GetAssignment(GetAssignmentRequest) returns (AssignmentResponse);
+  rpc ListAssignments(ListAssignmentsRequest) returns (ListAssignmentsResponse);
+  rpc UpdateAssignment(UpdateAssignmentRequest) returns (AssignmentResponse);
+  rpc DeleteAssignment(DeleteAssignmentRequest) returns (DeleteAssignmentResponse);
+}
+
+// Submission service definition
+service SubmissionService {
+  rpc UploadSubmission(UploadSubmissionRequest) returns (SubmissionResponse);
+  rpc GetSubmission(GetSubmissionRequest) returns (SubmissionResponse);
+  rpc ListSubmissions(ListSubmissionsRequest) returns (ListSubmissionsResponse);
+  rpc GetSubmissionFile(GetSubmissionRequest) returns (SubmissionFileResponse);
+  rpc DeleteSubmission(DeleteSubmissionRequest) returns (DeleteSubmissionResponse);
+}
+
+// Rubric service definition
+service RubricService {
+  rpc CreateRubric(CreateRubricRequest) returns (RubricResponse);
+  rpc GetRubric(GetRubricRequest) returns (RubricResponse);
+  rpc ListRubrics(ListRubricsRequest) returns (ListRubricsResponse);
+  rpc UpdateRubric(UpdateRubricRequest) returns (RubricResponse);
+  rpc DeleteRubric(DeleteRubricRequest) returns (DeleteRubricResponse);
+}
+
+// Grade service definition
+service GradeService {
+  rpc UploadGrades(UploadGradesRequest) returns (UploadGradesResponse);
+  rpc GetGradeStats(GetGradeStatsRequest) returns (GetGradeStatsResponse);
+  rpc GetGradeDistribution(GetGradeDistributionRequest) returns (GetGradeDistributionResponse);
+}
+
+// Analysis service definition
+service AnalysisService {
+  rpc RunAnomalyAnalysis(RunAnomalyAnalysisRequest) returns (AnomalyAnalysisResponse);
+  rpc GetAnalysisHistory(GetAnalysisHistoryRequest) returns (GetAnalysisHistoryResponse);
+}
+
+// Health service
+service HealthService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+}
+
+// Messages for User/Auth service
+message User {
+  int64 id = 1;
+  string email = 2;
+  string name = 3;
+  string role = 4; // "instructor" or "ta"
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message RegisterRequest {
+  string email = 1;
+  string name = 2;
+  string password = 3;
+  string role = 4; // "instructor" or "ta"
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  User user = 1;
+  string token = 2;
+  string message = 3;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  string message = 1;
+}
+
+message GetProfileRequest {
+  string token = 1;
+}
+
+message VerifyTokenRequest {
+  string token = 1;
+}
+
+message UserResponse {
+  User user = 1;
+  string message = 2;
+}
+
+// Messages for Course service
+message Course {
+  int64 id = 1;
+  string name = 2;
+  string code = 3;
+  string join_code = 4;
+  int64 instructor_id = 5;
+  string description = 6;
+  string semester = 7;
+  int32 year = 8;
+  repeated CourseMember members = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message CourseMember {
+  int64 user_id = 1;
+  string name = 2;
+  string email = 3;
+  string role = 4;
+  google.protobuf.Timestamp joined_at = 5;
+}
+
+message CreateCourseRequest {
+  string name = 1;
+  string code = 2;
+  string description = 3;
+  string semester = 4;
+  int32 year = 5;
+}
+
+message GetCourseRequest {
+  int64 id = 1;
+}
+
+message ListCoursesRequest {}
+
+message UpdateCourseRequest {
+  int64 id = 1;
+  string name = 2;
+  string code = 3;
+  string description = 4;
+  string semester = 5;
+  int32 year = 6;
+}
+
+message JoinCourseRequest {
+  string join_code = 1;
+}
+
+message LeaveCourseRequest {
+  int64 course_id = 1;
+}
+
+message DeleteCourseRequest {
+  int64 id = 1;
+}
+
+message CourseResponse {
+  Course course = 1;
+  string message = 2;
+}
+
+message ListCoursesResponse {
+  repeated Course courses = 1;
+}
+
+message LeaveCourseResponse {
+  string message = 1;
+}
+
+message DeleteCourseResponse {
+  string message = 1;
+}
+
+// Messages for Assignment service
+message Assignment {
+  int64 id = 1;
+  int64 course_id = 2;
+  string name = 3;
+  string description = 4;
+  google.protobuf.Timestamp due_date = 5;
+  double max_score = 6;
+  int64 rubric_id = 7;
+  Rubric rubric = 8;
+  int64 created_by = 9;
+  string creator_name = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+
+message CreateAssignmentRequest {
+  int64 course_id = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp due_date = 4;
+  double max_score = 5;
+  int64 rubric_id = 6;
+}
+
+message GetAssignmentRequest {
+  int64 id = 1;
+}
+
+message ListAssignmentsRequest {
+  int64 course_id = 1;
+}
+
+message UpdateAssignmentRequest {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp due_date = 4;
+  double max_score = 5;
+  int64 rubric_id = 6;
+}
+
+message DeleteAssignmentRequest {
+  int64 id = 1;
+}
+
+message AssignmentResponse {
+  Assignment assignment = 1;
+  string message = 2;
+}
+
+message ListAssignmentsResponse {
+  repeated Assignment assignments = 1;
+}
+
+message DeleteAssignmentResponse {
+  string message = 1;
+}
+
+// Messages for Submission service
+message Submission {
+  int64 id = 1;
+  int64 assignment_id = 2;
+  string student_id = 3;
+  string student_name = 4;
+  string file_path = 5;
+  string file_name = 6;
+  google.protobuf.Timestamp uploaded_at = 7;
+}
+
+message UploadSubmissionRequest {
+  int64 assignment_id = 1;
+  string student_id = 2;
+  string student_name = 3;
+  bytes file_data = 4;
+}
+
+message GetSubmissionRequest {
+  int64 id = 1;
+}
+
+message ListSubmissionsRequest {
+  int64 assignment_id = 1;
+}
+
+message DeleteSubmissionRequest {
+  int64 id = 1;
+}
+
+message SubmissionResponse {
+  Submission submission = 1;
+  string message = 2;
+}
+
+message ListSubmissionsResponse {
+  repeated Submission submissions = 1;
+}
+
+message SubmissionFileResponse {
+  bytes file_data = 1;
+  string file_name = 2;
+}
+
+message DeleteSubmissionResponse {
+  string message = 1;
+}
+
+// Messages for Rubric service
+message Rubric {
+  int64 id = 1;
+  string name = 2;
+  int64 course_id = 3;
+  repeated string criteria = 4;
+  repeated double weights = 5;
+  int64 created_by = 6;
+  string creator_name = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message CreateRubricRequest {
+  string name = 1;
+  int64 course_id = 2;
+  repeated string criteria = 3;
+  repeated double weights = 4;
+}
+
+message GetRubricRequest {
+  int64 id = 1;
+}
+
+message ListRubricsRequest {
+  int64 course_id = 1;
+}
+
+message UpdateRubricRequest {
+  int64 id = 1;
+  string name = 2;
+  repeated string criteria = 3;
+  repeated double weights = 4;
+}
+
+message DeleteRubricRequest {
+  int64 id = 1;
+}
+
+message RubricResponse {
+  Rubric rubric = 1;
+  string message = 2;
+}
+
+message ListRubricsResponse {
+  repeated Rubric rubrics = 1;
+}
+
+message DeleteRubricResponse {
+  string message = 1;
+}
+
+// Messages for Grade service
+message Grade {
+  int64 id = 1;
+  int64 assignment_id = 2;
+  int64 rubric_id = 3;
+  string student_id = 4;
+  int64 grader_id = 5;
+  string grader_name = 6;
+  string question_id = 7;
+  double score = 8;
+  double max_score = 9;
+  string feedback = 10;
+  google.protobuf.Timestamp graded_at = 11;
+}
+
+message GradeData {
+  string student_id = 1;
+  string question_id = 2;
+  double score = 3;
+  double max_score = 4;
+  string feedback = 5;
+}
+
+message UploadGradesRequest {
+  int64 assignment_id = 1;
+  int64 rubric_id = 2;
+  repeated GradeData grades = 3;
+}
+
+message UploadGradesResponse {
+  string message = 1;
+  int32 total_uploaded = 2;
+  repeated string errors = 3;
+}
+
+message GetGradeStatsRequest {
+  int64 rubric_id = 1;
+}
+
+message GradeStat {
+  string ta_id = 1;
+  string question_id = 2;
+  int32 count = 3;
+  double avg_score = 4;
+  double min_score = 5;
+  double max_score = 6;
+  double avg_percentage = 7;
+}
+
+message GetGradeStatsResponse {
+  repeated GradeStat stats = 1;
+}
+
+message GetGradeDistributionRequest {
+  int64 rubric_id = 1;
+}
+
+message QuestionDistribution {
+  string question_id = 1;
+  map<string, TADistribution> ta_distributions = 2;
+}
+
+message TADistribution {
+  repeated double scores = 1;
+}
+
+message GetGradeDistributionResponse {
+  repeated QuestionDistribution distributions = 1;
+}
+
+// Messages for Analysis service
+message RunAnomalyAnalysisRequest {
+  int64 rubric_id = 1;
+}
+
+message Anomaly {
+  string type = 1;
+  string question_id = 2;
+  string severity = 3;
+  map<string, string> details = 4;
+}
+
+message Statistics {
+  double mean = 1;
+  double variance = 2;
+  double std_dev = 3;
+  int32 count = 4;
+  double reliability = 5;
+}
+
+message AnomalyAnalysisResponse {
+  repeated Anomaly anomalies = 1;
+  map<string, Statistics> statistics = 2;
+  int32 total_grades = 3;
+  google.protobuf.Timestamp analysis_timestamp = 4;
+}
+
+message GetAnalysisHistoryRequest {
+  int64 rubric_id = 1;
+}
+
+message AnalysisResult {
+  int64 id = 1;
+  int64 rubric_id = 2;
+  string analysis_type = 3;
+  string results_json = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message GetAnalysisHistoryResponse {
+  repeated AnalysisResult results = 1;
+}
+
+// Health check messages
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  string status = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
