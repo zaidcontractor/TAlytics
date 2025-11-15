@@ -3,9 +3,14 @@
 Submission for the Operations and Staff Support Track, Claude for Good 2025.  
 Team Members: Zaid Contractor and Philip Naveen.
 
+[Link to Pitch Deck](https://docs.google.com/presentation/d/1uzXuqcbrYxRu23cNx_T9Hk7FmMGf3-JPh3K3v4eLYp8/edit?usp=sharing) 
+
 ---
 
 ## Overview
+
+![TAlytics](https://github.com/user-attachments/assets/eb00f249-d1af-4484-a526-bc36319f1cef)
+
 
 TAlytics is a platform for data-driven grading and analytics, integrating artificial intelligence and modern web technologies. The project provides tools and automation for educational staff to efficiently design rubrics, manage grading, and analyze student assessment data.
 
