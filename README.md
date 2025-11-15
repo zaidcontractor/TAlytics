@@ -14,6 +14,7 @@ TAlytics is a platform for data-driven grading and analytics, integrating artifi
 - Java Script + React
 - GoLang + gRPC + Protobuf
 - Anthropic Claude API
+- Local RDBMS (SQLite)
 
 ## Project Structure
 
